@@ -21,10 +21,8 @@ public partial class App : Application
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             BindingPlugins.DataValidators.RemoveAt(0);
-            desktop.MainWindow = new LoginWindow
-            {
-                DataContext = new LoginWindowViewModel(),
-            };
+            
+            desktop.MainWindow = new LoginWindow();
         }
 
         base.OnFrameworkInitializationCompleted();

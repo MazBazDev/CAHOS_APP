@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:App.ViewModels.Pages"
+             x:Class="App.Views.Pages.Stocks.StocksCreate"
+             x:DataType="pages:StockCreateViewModel">
+    
+    <StackPanel Spacing="15">
+        <TextBlock Text="Créer un produit" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        
+        <TextBox Margin="0,0,0,10" Watermark="Product name"/>
+        
+        <NumericUpDown Margin="0,0,0,10" Watermark="Quantity" KeyboardNavigation.TabIndex="1"/>
+        
+        <NumericUpDown Margin="0,0,0,10" Watermark="Price" KeyboardNavigation.TabIndex="2"/>
+        
+        <DatePicker  DayFormat="ddd dd" KeyboardNavigation.TabIndex="3"/>
+        
+        <TextBox Margin="0,0,0,10" Watermark="Storage place" KeyboardNavigation.TabIndex="4"/>
+        
+        <!-- <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" Margin="0,0,0,10" PlaceholderText="Sélectionner une catégorie" KeyboardNavigation.TabIndex="5"/> -->
+
+        <!-- Bouton Ajouter -->
+        <Button Content="Ajouter produit" Click="StoreProduct" Width="150" HorizontalAlignment="Center"/>
+    </StackPanel>
+</UserControl>

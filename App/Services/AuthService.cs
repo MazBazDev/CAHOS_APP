@@ -89,7 +89,9 @@ public class AuthService
         {
             await _apiService.PostAsync<object, object>("auth/logout", null);
             Session = null;
-
+            
+            Console.WriteLine("Logout successful!");
+            
             return new ApiResponse<bool>
             {
                 IsSuccess = true,

@@ -3,16 +3,56 @@
         xmlns:vm="using:App.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="250"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Height="450" Width="800"
         x:Class="App.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="App">
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-    
+        <Design.DataContext>
+            <vm:MainWindowViewModel/>
+        </Design.DataContext>
+        
+        <DockPanel>
+            <!-- Navbar -->
+            <Border DockPanel.Dock="Top" Background="Gray" Height="50" Padding="8">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Left" Text="CAHOS" Foreground="White" VerticalAlignment="Center" />
+                    
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <TextBlock Text="{Binding UserName}" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center" />
+                        <Button Name="LogoutButton" Click="LogoutButton_OnClick" Foreground="Azure" Content="Logout" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+            
+            
+            
+            <!-- Sidebar -->
+            <Border DockPanel.Dock="Left" Background="#2E3B4E" Width="200">
+                <StackPanel>
+                    <Button Name="Tab1Button" Foreground="Azure" Content="Home" Margin="8 20 8 8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                    <Button Name="Tab2Button" Foreground="Azure" Content="Stock" Margin="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                    <Button Name="Tab3Button" Foreground="Azure" Content="Orders" Margin="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                    <Button Name="Tab4Button" Foreground="Azure" Content="Clients" Margin="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                    <Button Name="Tab5Button" Foreground="Azure" Content="Logs" Margin="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                </StackPanel>
+            </Border>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <!-- Content Area -->
+            <ScrollViewer>
+                <StackPanel>
+                    <Border Background="Red" Padding="8" Margin="0,0,0,10" 
+                            IsVisible="{Binding ErrorColor, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                        <TextBlock Text="{Binding ErrorMessage}" 
+                                   Foreground="White" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Center" 
+                                   FontSize="10" />
+                    </Border>
+                    <ContentControl Name="ContentArea" Padding="20"/>
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
 </Window>

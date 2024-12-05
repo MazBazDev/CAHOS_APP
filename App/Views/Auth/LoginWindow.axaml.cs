@@ -14,7 +14,9 @@ public partial class LoginWindow : Window
     private readonly AuthService _authService;
     public LoginWindow()
     {
+        this.DataContext = new LoginWindowViewModel();
         InitializeComponent();
+        
         _authService = new AuthService();
     }
 
@@ -46,21 +48,13 @@ public partial class LoginWindow : Window
     
     private void goToRegister(object? sender, RoutedEventArgs e)
     {
-        var registerWindow = new RegisterWindow {
-            DataContext = new RegisterWindowViewModel()
-        };
-        
-        registerWindow.Show();
+        new RegisterWindow().Show();
         this.Close();
     }
     
     private void NavigateToHome()
     {
-        var mainWindow = new MainWindow {
-            DataContext = new MainWindowViewModel()
-        };
-        
-        mainWindow.Show();
+        new MainWindow().Show();
         this.Close();
     }
 }
