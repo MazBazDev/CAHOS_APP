@@ -1,0 +1,63 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:orders="clr-namespace:App.ViewModels.Pages.Orders"
+             x:Class="App.Views.Pages.Orders.OrdersCreate"
+             x:DataType="orders:OrderCreateViewModel">
+    
+    <StackPanel Spacing="15">
+        <!-- Title -->
+        <TextBlock Text="{Binding Title}" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        
+        <!-- Client -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Client:" FontWeight="Bold"/>
+            <ComboBox Name="ClientInput" 
+                      ItemsSource="{Binding Clients}"
+                      DisplayMemberBinding="{Binding name}"
+                      Margin="0,0,0,10"
+                      PlaceholderText="Select a category"
+                      HorizontalAlignment="Stretch"
+                      KeyboardNavigation.TabIndex="1"/>
+        </StackPanel>
+
+        <!-- Product -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Product:" FontWeight="Bold"/>
+            <ComboBox Name="ProductInput" 
+                      ItemsSource="{Binding Products}"
+                      DisplayMemberBinding="{Binding name}"
+                      Margin="0,0,0,10"
+                      PlaceholderText="Select a product"
+                      HorizontalAlignment="Stretch"
+                      SelectionChanged="ProductChanged"
+                      KeyboardNavigation.TabIndex="2"/>
+        </StackPanel>
+        
+        <!-- Quantity -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Quantity:" FontWeight="Bold"/>
+            <NumericUpDown Value="{Binding Quantity}" ValueChanged="QtyChanged" Name="QuantityInput" Increment="1" Minimum="1" Margin="0,0,0,10" KeyboardNavigation.TabIndex="4"/>
+        </StackPanel>
+        
+        <!-- Total -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Total:" FontWeight="Bold"/>
+            <TextBox Name="TotalInput" IsReadOnly="True" Text="{Binding Total}" Margin="0,0,0,10" KeyboardNavigation.TabIndex="5"/>
+        </StackPanel>
+        
+        <!-- Status -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Status:" FontWeight="Bold"/>
+            <ComboBox Name="StatusInput" 
+                      ItemsSource="{Binding Statuses}"
+                      DisplayMemberBinding="{Binding}"
+                      Margin="0,0,0,10"
+                      PlaceholderText="Select a status"
+                      HorizontalAlignment="Stretch"
+                      KeyboardNavigation.TabIndex="3"/>
+        </StackPanel>
+        
+        <!-- Create Button -->
+        <Button Content="Create Product" HorizontalContentAlignment="Center" Click="StoreOrder" Width="150" HorizontalAlignment="Center" KeyboardNavigation.TabIndex="6"/>
+    </StackPanel>
+</UserControl>

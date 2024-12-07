@@ -1,0 +1,107 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:orders="clr-namespace:App.ViewModels.Pages.Orders"
+             x:Class="App.Views.Pages.Orders.OrderShow"
+             x:DataType="orders:OrderShowViewModel">
+    
+    <StackPanel Spacing="15">
+        <!-- Title -->
+        <TextBlock Text="{Binding Title}" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        
+        <TextBlock>
+            <Run FontWeight="Bold">Created at:</Run>
+            <Run Text="{Binding Order.order_date}" />
+        </TextBlock>
+        
+        <!-- Client -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Client:" FontWeight="Bold"/>
+            <TextBlock FontSize="12">
+                Current Client: <TextBlock Text="{Binding Order.client.name}" />
+            </TextBlock>
+            <ComboBox Name="ClientInput" 
+                      ItemsSource="{Binding Clients}"
+                      DisplayMemberBinding="{Binding name}"
+                      Margin="0,0,0,10"
+                      PlaceholderText="Select a category"
+                      HorizontalAlignment="Stretch"
+                      KeyboardNavigation.TabIndex="1"/>
+        </StackPanel>
+
+        <!-- Product -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Product:" FontWeight="Bold"/>
+            <TextBlock FontSize="12">
+                Current Product: <TextBlock Text="{Binding Order.product.name}" />
+            </TextBlock>
+            <ComboBox Name="ProductInput" 
+                      ItemsSource="{Binding Products}"
+                      DisplayMemberBinding="{Binding name}"
+                      Margin="0,0,0,10"
+                      PlaceholderText="Select a product"
+                      HorizontalAlignment="Stretch"
+                      SelectionChanged="ProductChanged"
+                      KeyboardNavigation.TabIndex="2"/>
+        </StackPanel>
+        
+        <!-- Quantity -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Quantity:" FontWeight="Bold"/>
+            <TextBlock FontSize="12">
+                Current Quantity: <TextBlock Text="{Binding Order.quantity}" />
+            </TextBlock>
+            <NumericUpDown Value="{Binding Quantity}" ValueChanged="QtyChanged" Name="QuantityInput" Increment="1" Minimum="1" Margin="0,0,0,10" KeyboardNavigation.TabIndex="4"/>
+        </StackPanel>
+        
+        <!-- Total -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Total:" FontWeight="Bold"/>
+            <TextBlock FontSize="12">
+                Current total: <TextBlock Text="{Binding Order.total}" />
+            </TextBlock>
+            <TextBox Name="TotalInput" IsReadOnly="True" Text="{Binding Total}" Margin="0,0,0,10" KeyboardNavigation.TabIndex="5"/>
+        </StackPanel>
+        
+        <!-- Status -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Status:" FontWeight="Bold"/>
+            <TextBlock FontSize="12">
+                Current Status: <TextBlock Text="{Binding Order.status}" />
+            </TextBlock>
+            <ComboBox Name="StatusInput" 
+                      ItemsSource="{Binding Statuses}"
+                      DisplayMemberBinding="{Binding}"
+                      Margin="0,0,0,10"
+                      PlaceholderText="Select a status"
+                      HorizontalAlignment="Stretch"
+                      KeyboardNavigation.TabIndex="3"/>
+        </StackPanel>
+        
+        <Grid Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Delete Button -->
+            <Button Content="Delete Order" 
+                    HorizontalAlignment="Left" 
+                    Click="DeleteOrder" 
+                    Width="150" 
+                    KeyboardNavigation.TabIndex="6" 
+                    Grid.Column="0"/>
+
+            <!-- Update Button -->
+            <Button Content="Update Order" 
+                    HorizontalAlignment="Right" 
+                    Click="UpdateOrder" 
+                    Width="150" 
+                    KeyboardNavigation.TabIndex="7" 
+                    Grid.Column="2"/>
+        </Grid>
+        <TextBlock FontSize="12">
+            Deleting the order will result in a refund of product stock.
+        </TextBlock>
+    </StackPanel>
+</UserControl>

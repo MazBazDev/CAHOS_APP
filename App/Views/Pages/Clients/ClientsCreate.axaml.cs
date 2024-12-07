@@ -40,6 +40,7 @@ public partial class ClientsCreate : UserControl
             
             if (createClientResult.IsSuccess && createClientResult.Data != null)
             {
+                _mainWindowViewModel.SetSuccess("Client created successfully!", 3000);
                 var mainWindow = (MainWindow)this.FindAncestorOfType<Window>();
                 mainWindow?.NavigateToPage(new ClientsIndex(_mainWindowViewModel));
             }

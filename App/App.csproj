@@ -41,6 +41,18 @@
         <DependentUpon>StocksIndex.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\Pages\Orders\OrdersCreate.axaml.cs">
+        <DependentUpon>StocksCreate.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Pages\Orders\OrdersIndex.axaml.cs">
+        <DependentUpon>StocksIndex.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Pages\Orders\OrderShow.axaml.cs">
+        <DependentUpon>StocksShow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

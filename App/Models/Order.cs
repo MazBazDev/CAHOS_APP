@@ -12,12 +12,12 @@ public class Order
     public int? product_id { get; set; }
     public int quantity {get; set;}
     public int total {get; set;}
-    public string status {get; set;}
-    public DateTime order_date {get; set;}
+    public string? status {get; set;}
+    public DateTime? order_date {get; set;}
     
     public Order() {}
     
-    public Order(int client_id, int product_id ,int quantity, string status, DateTime order_date)
+    public Order(int client_id, int product_id ,int quantity, string? status = null, DateTime? order_date = null)
     {
         this.client_id = client_id;
         this.product_id = product_id;

@@ -55,6 +55,7 @@ public partial class StocksCreate : UserControl
             
             if (createProductResult.IsSuccess && createProductResult.Data != null)
             {
+                _mainWindowViewModel.SetSuccess("Product created successfully!", 3000);
                 var mainWindow = (MainWindow)this.FindAncestorOfType<Window>();
                 mainWindow?.NavigateToPage(new StocksIndex(_mainWindowViewModel));
             }

@@ -33,7 +33,7 @@ public partial class MainWindow : Window
 
         tab1Button.Click += (_, _) => NavigateToPage(new home());
         tab2Button.Click += (_, _) => NavigateToPage(new StocksIndex(this.DataContext as MainWindowViewModel));
-        tab3Button.Click += (_, _) => NavigateToPage(new OrdersIndex());
+        tab3Button.Click += (_, _) => NavigateToPage(new OrdersIndex(this.DataContext as MainWindowViewModel));
         tab4Button.Click += (_, _) => NavigateToPage(new ClientsIndex(this.DataContext as MainWindowViewModel));
         tab5Button.Click += (_, _) => NavigateToPage(new LogsIndex());
     }
