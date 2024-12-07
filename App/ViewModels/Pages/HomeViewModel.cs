@@ -1,6 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using App.Models;
 using App.Services;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 using ReactiveUI;
 
 namespace App.ViewModels.Pages;
@@ -24,6 +28,22 @@ public class HomeViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _alerts, value);
 
     }
+    
+    
+    private ISeries[] _series;
+    
+    public ISeries[] Series
+    {
+        get => _series;
+        set => this.RaiseAndSetIfChanged(ref _series, value);
+    }
+    
+    private Axis[] _xAxes;
+    public Axis[] XAxes
+    {
+        get => _xAxes;
+        set => this.RaiseAndSetIfChanged(ref _xAxes, value);
+    }
    
     public HomeViewModel(MainWindowViewModel mainWindowViewModel)
     {
@@ -32,6 +52,7 @@ public class HomeViewModel : ViewModelBase
 
         GetDashboardAsync();
         GetAlertsAsync();
+        GetStatsAsync();
     }
     
     public async void GetDashboardAsync()
@@ -60,6 +81,30 @@ public class HomeViewModel : ViewModelBase
 
     public async void GetStatsAsync()
     {
+        var response = await _homeService.GetStatsAsync();
+        if (response.IsSuccess)
+        {
+            var stats = response.Data;
+            
+            Series = [
+                new ColumnSeries<int>
+                {
+                    Values = stats.series,
+                    XToolTipLabelFormatter = x =>  $"{x.Model.ToString()} orders on {stats.labels[x.Index].ToString("dd/MM/yyyy")}",
+                }
+            ];
+        
+            XAxes = new[]
+            {
+                new Axis
+                {
+                    Labels = stats.labels.Select(x => x.ToString("dd/MM/yyyy")).ToArray()
+                }
+            };
+        } else
+        {
+            _mainWindowViewModel.SetError($"An error has occurred : {response.ApiException?.Message ?? "Erreur inconnue"}", 5000);
+        }
         
     }
 }

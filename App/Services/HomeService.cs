@@ -68,26 +68,26 @@ public class HomeService
         }
     }
     
-    public async Task<ApiResponse<List<Statistic>>> GetStatsAsync()
+    public async Task<ApiResponse<Statistic>> GetStatsAsync()
     {
         try
         {
-            var response = await _apiService.GetAsync<List<Statistic>>("stats");
-            return new ApiResponse<List<Statistic>>
+            var response = await _apiService.GetAsync<Statistic>("stats");
+            return new ApiResponse<Statistic>
             {
                 IsSuccess = true,
                 Data = response
             };
         } catch (ApiException e) {
             Console.WriteLine(e);
-            return new ApiResponse<List<Statistic>>
+            return new ApiResponse<Statistic>
             {
                 IsSuccess = false,
                 ApiException = e
             };
         } catch (Exception e) {
             Console.WriteLine(e);
-            return new ApiResponse<List<Statistic>>
+            return new ApiResponse<Statistic>
             {
                 IsSuccess = false,
                 GeneralException = e

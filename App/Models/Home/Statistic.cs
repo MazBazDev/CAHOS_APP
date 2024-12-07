@@ -1,17 +1,18 @@
 using System;
+using System.Collections.Generic;
 
 namespace App.Models;
 
 public class Statistic
 {
-    public DateTime date {get; set;}
-    public int total {get; set;}
+    public List<int> series {get; set;}
+    public List<DateTime> labels {get; set;}
     
     public Statistic() {}
     
-    public Statistic(DateTime date, int total)
+    public Statistic(List<int> series, List<DateTime> labels)
     {
-        this.date = date;
-        this.total = total;
+        this.series = series;
+        this.labels = labels;
     }
 }
