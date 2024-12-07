@@ -43,7 +43,7 @@
         <!-- Content Area -->
             <ScrollViewer>
                 <StackPanel>
-                    <Border Background="Red" Padding="8" Margin="0,0,0,10" 
+                    <Border Background="{Binding ErrorColor}" Padding="8" Margin="0,0,0,10" 
                             IsVisible="{Binding ErrorColor, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
                         <TextBlock Text="{Binding ErrorMessage}" 
                                    Foreground="White" 

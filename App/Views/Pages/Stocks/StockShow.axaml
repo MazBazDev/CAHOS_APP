@@ -1,0 +1,79 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:stock="clr-namespace:App.ViewModels.Pages.Stock"
+             x:Class="App.Views.Pages.Stocks.StockShow"
+             x:DataType="stock:StockShowViewModel">
+    
+    <StackPanel Spacing="15">
+        <!-- Title -->
+        <TextBlock Text="{Binding Title}" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <!-- Product Name -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Product Name:" FontWeight="Bold"/>
+            <TextBox Name="NameInput" Text="{Binding Product.name}" Margin="0,0,0,10" Watermark="Enter product name"/>
+        </StackPanel>
+
+        <!-- Quantity -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Quantity:" FontWeight="Bold"/>
+            <NumericUpDown TextInput="OnTextInput" Name="QuantityInput" Value="{Binding Product.quantity}" Increment="1" Minimum="0" Margin="0,0,0,10" Watermark="Enter quantity" KeyboardNavigation.TabIndex="1"/>
+        </StackPanel>
+
+        <!-- Price -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Price:" FontWeight="Bold"/>
+            <NumericUpDown TextInput="OnTextInput" Value="{Binding Product.price}" Name="PriceInput" Minimum="0" Margin="0,0,0,10" Watermark="Enter price" KeyboardNavigation.TabIndex="2"/>
+        </StackPanel>
+
+        <!-- Expiration Date -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Expiration Date:" FontWeight="Bold"/>
+            <CalendarDatePicker SelectedDate="{Binding Product.expiration_date}" Name="EXPDateInput" KeyboardNavigation.TabIndex="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </StackPanel>
+
+        <!-- Storage Place -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Storage Place:" FontWeight="Bold"/>
+            <TextBox Text="{Binding Product.location}" Name="LocationInput" Margin="0,0,0,10" Watermark="Enter storage place" KeyboardNavigation.TabIndex="4"/>
+        </StackPanel>
+
+        <!-- Category -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Select a category" FontWeight="Bold"/>
+            <TextBlock Text="{Binding SelectedCate}" FontSize="12"/>
+            <ComboBox Name="CategoryInput"
+                      ItemsSource="{Binding Categories}" 
+                      SelectedItem="{Binding Product.category}" 
+                      DisplayMemberBinding="{Binding name}" 
+                      Margin="0,0,0,10" 
+                      PlaceholderText="Select a category" 
+                      KeyboardNavigation.TabIndex="5"/>
+        </StackPanel>
+
+        <!-- Buttons -->
+        <Grid Margin="10,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Delete Button -->
+            <Button Content="Delete Product" 
+                    HorizontalAlignment="Left" 
+                    Click="DeleteProduct" 
+                    Width="150" 
+                    KeyboardNavigation.TabIndex="6" 
+                    Grid.Column="0"/>
+
+            <!-- Update Button -->
+            <Button Content="Update Product" 
+                    HorizontalAlignment="Right" 
+                    Click="UpdateProduct" 
+                    Width="150" 
+                    KeyboardNavigation.TabIndex="7" 
+                    Grid.Column="2"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

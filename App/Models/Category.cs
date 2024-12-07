@@ -12,4 +12,9 @@ public class Category
         this.id = id;
         this.name = name;
     }
+    
+    public override string ToString()
+    {
+        return $"{id} - {name}";
+    }
 }

@@ -62,6 +62,21 @@ public class ApiService
         var response = await _httpClient.PutAsync(url, content);
         return await HandleResponse<TResponse>(response);
     }
+    
+    // patch method
+    public async Task<TResponse> PatchAsync<TRequest, TResponse>(string url, TRequest data)
+    {
+        AddAuthorizationHeader();
+        JsonSerializerOptions opt = new JsonSerializerOptions
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        };
+        
+        var content = new StringContent(JsonSerializer.Serialize(data, opt), Encoding.UTF8, "application/json");
+        var response = await _httpClient.PatchAsync(url, content);
+        return await HandleResponse<TResponse>(response);
+    }
+    
 
     public async Task DeleteAsync(string url)
     {
@@ -78,7 +93,11 @@ public class ApiService
         {
             try
             {
-                var errorResponse = JsonSerializer.Deserialize<ApiError>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                var errorResponse = JsonSerializer.Deserialize<ApiError>(content, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    Converters = { new DateTimeConverter() }
+                });
 
                 var errorMessage = errorResponse?.Message ?? "An error occurred";
                 if (errorResponse?.Errors != null)
@@ -122,5 +141,25 @@ public class ApiException : Exception
 
     public ApiException(string message, System.Net.HttpStatusCode statusCode) : base(message) {
         StatusCode = statusCode;
+    }
+}
+
+public class DateTimeConverter : JsonConverter<DateTime>
+{
+    private const string Format = "yyyy-MM-ddTHH:mm:ss"; // ISO 8601 format, vous pouvez l'adapter.
+
+    public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (reader.TokenType == JsonTokenType.String && 
+            DateTime.TryParse(reader.GetString(), out var date)) {
+            return date;
+        }
+
+        throw new JsonException($"Invalid DateTime format: {reader.GetString()}");
+    }
+
+    public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
+    {
+        writer.WriteStringValue(value.ToString(Format));
     }
 }

@@ -99,7 +99,7 @@ public class ProductService
     {
         try
         {
-            var response = await _apiService.PutAsync<Product, Product> ($"products/{id}", data);
+            var response = await _apiService.PatchAsync<Product, Product> ($"products/{id}", data);
             return new ApiResponse<Product>
             {
                 IsSuccess = true,

@@ -1,12 +1,10 @@
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using App.Models;
 using App.Services;
 using ReactiveUI;
 
-namespace App.ViewModels.Pages;
+namespace App.ViewModels.Pages.Stock;
 
 public partial class StockIndexViewModel : ViewModelBase
 {
@@ -15,7 +13,7 @@ public partial class StockIndexViewModel : ViewModelBase
     
     public string Title => "Stocks";
     
-    private ObservableCollection<Product> _products = new();
+    private ObservableCollection<Product> _products;
 
     public ObservableCollection<Product> Products
     {
@@ -27,7 +25,6 @@ public partial class StockIndexViewModel : ViewModelBase
     {
         _mainWindowViewModel = mainWindowViewModel;
         _productService = new ProductService();
-        Products = new ObservableCollection<Product>();
         LoadProductsAsync();
     }
 
@@ -41,12 +38,7 @@ public partial class StockIndexViewModel : ViewModelBase
             if (response.IsSuccess)
             {
                 Console.WriteLine("Products loaded successfully!");
-                
-                Products.Clear();
-                foreach (var product in response.Data)
-                {
-                    Products.Add(product);
-                }
+                Products = new ObservableCollection<Product>(response.Data);
             } else {
                 _mainWindowViewModel.SetError($"An error has occurred : {response.ApiException?.Message ?? "Erreur inconnue"}", 5000);
             }

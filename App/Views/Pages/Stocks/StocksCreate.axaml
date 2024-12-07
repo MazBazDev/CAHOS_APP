@@ -1,25 +1,55 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:pages="clr-namespace:App.ViewModels.Pages"
+             xmlns:stock="clr-namespace:App.ViewModels.Pages.Stock"
              x:Class="App.Views.Pages.Stocks.StocksCreate"
-             x:DataType="pages:StockCreateViewModel">
+             x:DataType="stock:StockCreateViewModel">
     
     <StackPanel Spacing="15">
-        <TextBlock Text="Créer un produit" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        <!-- Title -->
+        <TextBlock Text="{Binding Title}" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,20"/>
         
-        <TextBox Margin="0,0,0,10" Watermark="Product name"/>
-        
-        <NumericUpDown Margin="0,0,0,10" Watermark="Quantity" KeyboardNavigation.TabIndex="1"/>
-        
-        <NumericUpDown Margin="0,0,0,10" Watermark="Price" KeyboardNavigation.TabIndex="2"/>
-        
-        <DatePicker  DayFormat="ddd dd" KeyboardNavigation.TabIndex="3"/>
-        
-        <TextBox Margin="0,0,0,10" Watermark="Storage place" KeyboardNavigation.TabIndex="4"/>
-        
-        <!-- <ComboBox ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" Margin="0,0,0,10" PlaceholderText="Sélectionner une catégorie" KeyboardNavigation.TabIndex="5"/> -->
+        <!-- Product Name -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Product Name:" FontWeight="Bold"/>
+            <TextBox Name="NameInput" Margin="0,0,0,10" Watermark="Enter product name"/>
+        </StackPanel>
 
-        <!-- Bouton Ajouter -->
-        <Button Content="Ajouter produit" Click="StoreProduct" Width="150" HorizontalAlignment="Center"/>
+        <!-- Quantity -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Quantity:" FontWeight="Bold"/>
+            <NumericUpDown TextInput="OnTextInput" Name="QuantityInput" Increment="1" Minimum="0" Margin="0,0,0,10" Watermark="Enter quantity" KeyboardNavigation.TabIndex="1"/>
+        </StackPanel>
+
+        <!-- Price -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Price:" FontWeight="Bold"/>
+            <NumericUpDown TextInput="OnTextInput" Value="1" Name="PriceInput" Minimum="0" Margin="0,0,0,10" Watermark="Enter price" KeyboardNavigation.TabIndex="2"/>
+        </StackPanel>
+
+        <!-- Expiration Date -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Expiration Date:" FontWeight="Bold"/>
+            <DatePicker Name="EXPDateInput" DayFormat="ddd dd" KeyboardNavigation.TabIndex="3"/>
+        </StackPanel>
+
+        <!-- Storage Place -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Storage Place:" FontWeight="Bold"/>
+            <TextBox Name="LocationInput" Margin="0,0,0,10" Watermark="Enter storage place" KeyboardNavigation.TabIndex="4"/>
+        </StackPanel>
+
+        <!-- Category -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Category:" FontWeight="Bold"/>
+            <ComboBox Name="CategoryInput"
+                      ItemsSource="{Binding Categories}" 
+                      DisplayMemberBinding="{Binding name}" 
+                      Margin="0,0,0,10" 
+                      PlaceholderText="Select a category" 
+                      KeyboardNavigation.TabIndex="5"/>
+        </StackPanel>
+
+        <!-- Create Button -->
+        <Button Content="Create Product" HorizontalContentAlignment="Center" Click="StoreProduct" Width="150" HorizontalAlignment="Center" KeyboardNavigation.TabIndex="6"/>
     </StackPanel>
 </UserControl>

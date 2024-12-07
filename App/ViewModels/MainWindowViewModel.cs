@@ -37,7 +37,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
     
-    public void setSuccess(string message, int? delay = null)
+    public void SetSuccess(string message, int? delay = null)
     {
         ErrorMessage = message;
         ErrorColor = "green";

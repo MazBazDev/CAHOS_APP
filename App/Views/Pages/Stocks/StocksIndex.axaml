@@ -1,8 +1,8 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:pages="clr-namespace:App.ViewModels.Pages"
+             xmlns:stock="clr-namespace:App.ViewModels.Pages.Stock"
              x:Class="App.Views.Pages.Stocks.StocksIndex"
-             x:DataType="pages:StockIndexViewModel">
+             x:DataType="stock:StockIndexViewModel">
     <StackPanel>
         <Grid Margin="0 0 0 20">
             <Grid.ColumnDefinitions>
@@ -13,21 +13,23 @@
             <TextBlock Grid.Column="0" Text="{Binding Title}" VerticalAlignment="Center" />
             <Button Grid.Column="1" Margin="0" Content="Add product" Click="AddProductButton" HorizontalAlignment="Right" />
         </Grid>
-
         
-        <DataGrid ItemsSource="{Binding Products}" 
+        <DataGrid Name="DataGrid" ItemsSource="{Binding Products}" 
+                  SelectionChanged="ShowProduct"
                   AutoGenerateColumns="False" IsReadOnly="True" 
-                  GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray">
+                  GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray"
+                  MinHeight="400">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding id}" />
                 <DataGridTextColumn Header="Name" Binding="{Binding name}" />
                 <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
                 <DataGridTextColumn Header="Price" Binding="{Binding price}" />
                 <DataGridTextColumn Header="Location" Binding="{Binding location}" />
-                <DataGridTextColumn Header="Expiration Date" Binding="{Binding expiration_date}" />
+                <DataGridTextColumn Header="Expiration Date" Binding="{Binding expiration_date.Date}" />
                 <DataGridTextColumn Header="Category" Binding="{Binding category.name}" />
                 <DataGridTextColumn Header="Created At" Binding="{Binding created_at}" />
             </DataGrid.Columns>
         </DataGrid>
+        
     </StackPanel>
 </UserControl>
