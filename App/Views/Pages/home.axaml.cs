@@ -1,14 +1,17 @@
+using App.ViewModels;
 using App.ViewModels.Pages;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 
 namespace App.Views.Pages;
 
-public partial class home : UserControl
+public partial class Home : UserControl
 {
-    public home()
+    private readonly MainWindowViewModel _mainWindowViewModel;
+    
+    public Home(MainWindowViewModel mainWindowViewModel)
     {
-        this.DataContext = new HomeViewModel();
+        _mainWindowViewModel = mainWindowViewModel;
+        this.DataContext = new HomeViewModel(mainWindowViewModel);
+        InitializeComponent();
     }
 }

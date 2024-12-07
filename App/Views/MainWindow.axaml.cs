@@ -31,11 +31,13 @@ public partial class MainWindow : Window
         
         var contentArea = this.FindControl<ContentControl>("ContentArea");
 
-        tab1Button.Click += (_, _) => NavigateToPage(new home());
+        tab1Button.Click += (_, _) => NavigateToPage(new Home(this.DataContext as MainWindowViewModel));
         tab2Button.Click += (_, _) => NavigateToPage(new StocksIndex(this.DataContext as MainWindowViewModel));
         tab3Button.Click += (_, _) => NavigateToPage(new OrdersIndex(this.DataContext as MainWindowViewModel));
         tab4Button.Click += (_, _) => NavigateToPage(new ClientsIndex(this.DataContext as MainWindowViewModel));
         tab5Button.Click += (_, _) => NavigateToPage(new LogsIndex());
+
+        NavigateToPage(new Home(this.DataContext as MainWindowViewModel));
     }
 
     private async void LogoutButton_OnClick(object? sender, RoutedEventArgs e)
