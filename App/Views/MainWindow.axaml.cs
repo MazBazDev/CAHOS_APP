@@ -9,6 +9,7 @@ using App.Views.Pages.Orders;
 using App.Views.Pages.Stocks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using ClientsIndex = App.Views.Pages.Clients.ClientsIndex;
 
 namespace App.Views;
 
@@ -33,7 +34,7 @@ public partial class MainWindow : Window
         tab1Button.Click += (_, _) => NavigateToPage(new home());
         tab2Button.Click += (_, _) => NavigateToPage(new StocksIndex(this.DataContext as MainWindowViewModel));
         tab3Button.Click += (_, _) => NavigateToPage(new OrdersIndex());
-        tab4Button.Click += (_, _) => NavigateToPage(new ClientsIndex());
+        tab4Button.Click += (_, _) => NavigateToPage(new ClientsIndex(this.DataContext as MainWindowViewModel));
         tab5Button.Click += (_, _) => NavigateToPage(new LogsIndex());
     }
 

@@ -1,0 +1,52 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:clients="clr-namespace:App.ViewModels.Pages.Clients"
+             x:Class="App.Views.Pages.Clients.ClientsShow"
+             x:DataType="clients:ClientShowViewModel">
+    
+    <StackPanel Spacing="15">
+        <!-- Title -->
+        <TextBlock Text="{Binding Title}" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <!-- Product Name -->
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Name:" FontWeight="Bold"/>
+            <TextBox Text="{Binding Client.name}" Name="NameInput" Margin="0,0,0,10" Watermark="Enter client name"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Address:" FontWeight="Bold"/>
+            <TextBox Text="{Binding Client.address}" Name="AddressInput" Margin="0,0,0,10" Watermark="Enter client address"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Siret:" FontWeight="Bold"/>
+            <TextBox Text="{Binding Client.siret}"  Name="SiretInput" Margin="0,0,0,10" Watermark="Enter cliebt siret"/>
+        </StackPanel>
+        
+        <!-- Buttons -->
+        <Grid Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Delete Button -->
+            <Button Content="Delete Client" 
+                    HorizontalAlignment="Left" 
+                    Click="DeleteClient" 
+                    Width="150" 
+                    KeyboardNavigation.TabIndex="6" 
+                    Grid.Column="0"/>
+
+            <!-- Update Button -->
+            <Button Content="Update Client" 
+                    HorizontalAlignment="Right" 
+                    Click="UpdateClient" 
+                    Width="150" 
+                    KeyboardNavigation.TabIndex="7" 
+                    Grid.Column="2"/>
+        </Grid>
+    </StackPanel>
+</UserControl>

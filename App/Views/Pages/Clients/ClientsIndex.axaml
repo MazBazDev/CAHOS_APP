@@ -1,5 +1,34 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="App.Views.Pages.Clients.ClientsIndex">
-    <TextBlock Text="Clients index" VerticalAlignment="Center" HorizontalAlignment="Center" />
+             xmlns:clients="clr-namespace:App.ViewModels.Pages.Clients"
+             x:Class="App.Views.Pages.Clients.ClientsIndex"
+             x:DataType="clients:ClientIndexViewModel">
+    <StackPanel>
+        <Grid Margin="0 0 0 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="{Binding Title}" VerticalAlignment="Center" />
+            <Button Grid.Column="1" Margin="0" Content="Add client" Click="AddClientButton" HorizontalAlignment="Right" />
+        </Grid>
+        
+        <DataGrid Name="DataGrid" ItemsSource="{Binding Clients}" 
+                  AutoGenerateColumns="False" IsReadOnly="True" 
+                  SelectionChanged="ShowClient"
+                  GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray"
+                  MinHeight="400">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding name}" />
+                <DataGridTextColumn Header="Address" Binding="{Binding address}" />
+                <DataGridTextColumn Header="Siret" Binding="{Binding siret}" />
+                <DataGridTextColumn Header="Orders:" Binding="{Binding orders.Count}" />
+                
+                <DataGridTextColumn Header="Created at" Binding="{Binding created_at}" />
+                <DataGridTextColumn Header="Updated at" Binding="{Binding updated_at}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </UserControl>

@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:clients="clr-namespace:App.ViewModels.Pages.Clients"
+             x:Class="App.Views.Pages.Clients.ClientsCreate"
+             x:DataType="clients:ClientCreateViewModel">
+    
+    <StackPanel Spacing="15">
+        <!-- Title -->
+        <TextBlock Text="{Binding Title}" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Name:" FontWeight="Bold"/>
+            <TextBox Name="NameInput" Margin="0,0,0,10" Watermark="Enter client name"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Address:" FontWeight="Bold"/>
+            <TextBox Name="AddressInput" Margin="0,0,0,10" Watermark="Enter client address"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Siret:" FontWeight="Bold"/>
+            <TextBox Name="SiretInput" Margin="0,0,0,10" Watermark="Enter cliebt siret"/>
+        </StackPanel>
+
+        <!-- Create Button -->
+        <Button Content="Create Client" HorizontalContentAlignment="Center" Click="StoreClient" Width="150" HorizontalAlignment="Center" KeyboardNavigation.TabIndex="6"/>
+    </StackPanel>
+</UserControl>

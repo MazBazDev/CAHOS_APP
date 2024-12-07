@@ -29,6 +29,18 @@
         <DependentUpon>AuthWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\Pages\Clients\ClientsCreate.axaml.cs">
+        <DependentUpon>StocksCreate.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Pages\Clients\ClientsShow.axaml.cs">
+        <DependentUpon>StockShow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Views\Pages\Clients\ClientsIndex.axaml.cs">
+        <DependentUpon>StocksIndex.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
