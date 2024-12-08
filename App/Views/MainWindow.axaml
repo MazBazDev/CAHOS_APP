@@ -36,6 +36,7 @@
                 <!-- Zone des boutons -->
                 <StackPanel DockPanel.Dock="Top">
                     <Button Name="Tab1Button" Foreground="Azure" Content="Home" Margin="8 20 8 8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                    <Button Name="Tab6Button" Foreground="Azure" Content="Categories" Margin="8 20 8 8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
                     <Button Name="Tab2Button" Foreground="Azure" Content="Stock" Margin="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
                     <Button Name="Tab3Button" Foreground="Azure" Content="Orders" Margin="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
                     <Button Name="Tab4Button" Foreground="Azure" Content="Clients" Margin="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>

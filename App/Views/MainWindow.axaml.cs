@@ -4,6 +4,7 @@ using App.Services;
 using App.ViewModels;
 using App.Views.Auth;
 using App.Views.Pages;
+using App.Views.Pages.Categories;
 using App.Views.Pages.Clients;
 using App.Views.Pages.Logs;
 using App.Views.Pages.Orders;
@@ -55,12 +56,14 @@ public partial class MainWindow : Window
     private void InitializeNavigation()
     {
         var tab1Button = this.FindControl<Button>("Tab1Button"); // Home
+        var tab6Button = this.FindControl<Button>("Tab6Button"); // Categories
         var tab2Button = this.FindControl<Button>("Tab2Button"); // Stocks
         var tab3Button = this.FindControl<Button>("Tab3Button"); // Orders
         var tab4Button = this.FindControl<Button>("Tab4Button"); // Clients
         var tab5Button = this.FindControl<Button>("Tab5Button"); // Logs
 
         tab1Button.Click += (_, _) => NavigateToPage(new Home(this.DataContext as MainWindowViewModel));
+        tab6Button.Click += (_, _) => NavigateToPage(new CategoriesIndex(this.DataContext as MainWindowViewModel));
         tab2Button.Click += (_, _) => NavigateToPage(new StocksIndex(this.DataContext as MainWindowViewModel));
         tab3Button.Click += (_, _) => NavigateToPage(new OrdersIndex(this.DataContext as MainWindowViewModel));
         tab4Button.Click += (_, _) => NavigateToPage(new ClientsIndex(this.DataContext as MainWindowViewModel));

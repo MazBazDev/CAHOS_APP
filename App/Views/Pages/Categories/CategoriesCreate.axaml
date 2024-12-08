@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:categories="clr-namespace:App.ViewModels.Pages.Categories"
+             x:Class="App.Views.Pages.Categories.CategoriesCreate"
+             x:DataType="categories:CategoriesCreateViewModel">
+    
+    <StackPanel Spacing="15">
+        <!-- Title -->
+        <TextBlock Text="{Binding Title}" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Name:" FontWeight="Bold"/>
+            <TextBox Name="NameInput" Margin="0,0,0,10" Watermark="Enter category name"/>
+        </StackPanel>
+
+        
+        <!-- Create Button -->
+        <Button Content="Create Category" HorizontalContentAlignment="Center" Click="StoreCategory" Width="150" HorizontalAlignment="Center" KeyboardNavigation.TabIndex="6"/>
+    </StackPanel>
+</UserControl>

@@ -54,9 +54,19 @@
         <DependentUpon>StocksShow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="Views\Pages\Categories\CategoriesCreate.axaml.cs">
+        <DependentUpon>CategoriesCreate.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="Views\Pages\Categories\CategoriesIndex.axaml.cs">
+        <DependentUpon>CategoriesIndex.axaml</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
       <UpToDateCheckInput Remove="Views\Pages\Clients\ClientsIndex.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ViewModels\Pages\Categories\" />
     </ItemGroup>
 </Project>

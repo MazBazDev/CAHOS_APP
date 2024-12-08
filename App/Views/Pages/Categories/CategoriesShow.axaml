@@ -1,0 +1,52 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:categories="clr-namespace:App.ViewModels.Pages.Categories"
+             x:Class="App.Views.Pages.Categories.CategoriesShow"
+             x:DataType="categories:CategoriesShowViewModel">
+    
+    <StackPanel Spacing="15">
+        <!-- Title -->
+        <TextBlock Text="{Binding Title}" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+        
+        <StackPanel Orientation="Vertical" Spacing="5">
+            <TextBlock Text="Name:" FontWeight="Bold"/>
+            <TextBox Text="{Binding Category.name}" Name="NameInput" Margin="0,0,0,10" Watermark="Enter category name"/>
+        </StackPanel>
+            
+        <Grid Margin="0,20,0, 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Delete Button -->
+            <Button Content="Delete Category" 
+                    HorizontalAlignment="Left" 
+                    Click="DeleteCategory" 
+                    Width="150" 
+                    KeyboardNavigation.TabIndex="6" 
+                    Grid.Column="0"/>
+
+            <!-- Update Button -->
+            <Button Content="Update Category" 
+                    HorizontalAlignment="Right" 
+                    Click="UpdateCategory" 
+                    Width="150" 
+                    KeyboardNavigation.TabIndex="7" 
+                    Grid.Column="2"/>
+        </Grid>
+        
+        <TextBlock>Category products : </TextBlock>
+        <DataGrid Name="DataGrid" ItemsSource="{Binding Category.products}" 
+                  SelectionChanged="ShowProduct"
+                  AutoGenerateColumns="False" IsReadOnly="True" 
+                  GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray"
+                  MinHeight="400">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                <DataGridTextColumn Header="Product" Binding="{Binding name}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</UserControl>
