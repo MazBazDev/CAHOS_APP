@@ -8,6 +8,23 @@
         <entry key="App/Views/Auth/RegisterWindow.axaml" value="App/App.csproj" />
         <entry key="App/Views/AuthWindow.axaml" value="App/App.csproj" />
         <entry key="App/Views/MainWindow.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Categories/CategoriesCreate.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Categories/CategoriesIndex.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Categories/CategoriesShow.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Categories/CategoriessIndex.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Clients/ClientsCreate.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Clients/ClientsIndex.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Clients/ClientsShow.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Home.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Logs/LogsIndex.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Orders/OrderShow.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Orders/OrdersCreate.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Orders/OrdersIndex.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Orders/StocksCreate.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Stocks/StockShow.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Stocks/StocksCreate.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/Stocks/StocksIndex.axaml" value="App/App.csproj" />
+        <entry key="App/Views/Pages/home.axaml" value="App/App.csproj" />
         <entry key="App/Views/Test.axaml" value="App/App.csproj" />
       </map>
     </option>
