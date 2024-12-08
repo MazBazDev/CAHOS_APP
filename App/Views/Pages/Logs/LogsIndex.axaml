@@ -12,7 +12,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Text="{Binding Title}" VerticalAlignment="Center" />
-            <Button Grid.Column="1" Margin="0" Content="Export to csv" HorizontalAlignment="Right" />
+            <Button Grid.Column="1" Margin="0" Content="Export to csv" Click="exportToCsv" HorizontalAlignment="Right" />
         </Grid>
         
         <DataGrid Name="DataGrid" ItemsSource="{Binding Logs}" 
