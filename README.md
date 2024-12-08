@@ -29,7 +29,7 @@ This project is a desktop application built with Avalonia and C#. It provides a 
 
 1. Clone the repository:
     ```sh
-    git https://github.com/mazbazdev/cahos_app.git
+    git clone https://github.com/mazbazdev/cahos_app.git
     cd cahos_app/App
     ```
 
