@@ -1,5 +1,32 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="App.Views.Pages.Logs.LogsIndex">
-    <TextBlock Text="Logs index" VerticalAlignment="Center" HorizontalAlignment="Center" />
+             xmlns:pages="clr-namespace:App.ViewModels.Pages"
+             x:Class="App.Views.Pages.Logs.LogsIndex"
+             x:DataType="pages:LogViewModel">
+    
+    <StackPanel>
+        <Grid Margin="0 0 0 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="{Binding Title}" VerticalAlignment="Center" />
+            <Button Grid.Column="1" Margin="0" Content="Export to csv" HorizontalAlignment="Right" />
+        </Grid>
+        
+        <DataGrid Name="DataGrid" ItemsSource="{Binding Logs}" 
+                  AutoGenerateColumns="False" IsReadOnly="True" 
+                  GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray"
+                  MinHeight="400">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                <DataGridTextColumn Header="User" Binding="{Binding user.name}" />
+
+                <DataGridTextColumn Header="Action" Binding="{Binding action}" />
+                <DataGridTextColumn Header="Message" Binding="{Binding message}" />
+                <DataGridTextColumn Header="Date" Binding="{Binding created_at}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </UserControl>

@@ -29,13 +29,11 @@ public partial class MainWindow : Window
         var tab4Button = this.FindControl<Button>("Tab4Button"); // Clients
         var tab5Button = this.FindControl<Button>("Tab5Button"); // Logs
         
-        var contentArea = this.FindControl<ContentControl>("ContentArea");
-
         tab1Button.Click += (_, _) => NavigateToPage(new Home(this.DataContext as MainWindowViewModel));
         tab2Button.Click += (_, _) => NavigateToPage(new StocksIndex(this.DataContext as MainWindowViewModel));
         tab3Button.Click += (_, _) => NavigateToPage(new OrdersIndex(this.DataContext as MainWindowViewModel));
         tab4Button.Click += (_, _) => NavigateToPage(new ClientsIndex(this.DataContext as MainWindowViewModel));
-        tab5Button.Click += (_, _) => NavigateToPage(new LogsIndex());
+        tab5Button.Click += (_, _) => NavigateToPage(new LogsIndex(this.DataContext as MainWindowViewModel));
 
         NavigateToPage(new Home(this.DataContext as MainWindowViewModel));
     }

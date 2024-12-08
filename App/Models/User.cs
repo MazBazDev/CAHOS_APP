@@ -4,23 +4,22 @@ namespace App.Models;
 
 public class User
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Email { get; set; }
+    public int id { get; set; }
+    public string name { get; set; }
+    public string email { get; set; }
     
-    public DateTime? EmailVerifiedAt { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public DateTime? email_verified_at { get; set; }
+    public DateTime Created_at { get; set; }
+    public DateTime Updated_at { get; set; }
     
     public User() {}
     
-    public User(int id, string name, string email, DateTime? emailVerifiedAt, DateTime createdAt, DateTime updatedAt)
+    public User(string name, string email, DateTime? email_verified_at, DateTime Created_at, DateTime Updated_at)
     {
-        Id = id;
-        Name = name;
-        Email = email;
-        EmailVerifiedAt = emailVerifiedAt;
-        CreatedAt = createdAt;
-        UpdatedAt = updatedAt;
+        this.name = name;
+        this.email = email;
+        this.email_verified_at = email_verified_at;
+        this.Created_at = Created_at;
+        this.Updated_at = Updated_at;
     }
 }
