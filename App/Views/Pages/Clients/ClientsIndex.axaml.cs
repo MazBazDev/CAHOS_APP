@@ -1,3 +1,4 @@
+using App.Interfaces;
 using App.Models;
 using App.Services;
 using App.ViewModels;
@@ -8,16 +9,14 @@ using ClientIndexViewModel = App.ViewModels.Pages.Clients.ClientIndexViewModel;
 
 namespace App.Views.Pages.Clients;
 
-public partial class ClientsIndex : UserControl
+public partial class ClientsIndex : UserControl, IRefreshable
 {
-    private readonly ClientService _clientService;
     private readonly MainWindowViewModel _mainWindowViewModel;
     
     public ClientsIndex(MainWindowViewModel mainWindowViewModel)
     {
         _mainWindowViewModel = mainWindowViewModel;
         this.DataContext = new ClientIndexViewModel(mainWindowViewModel);
-        _clientService = new ClientService();
         InitializeComponent();
     }
 
@@ -33,5 +32,10 @@ public partial class ClientsIndex : UserControl
         var client = (Client)e.AddedItems[0];
         var mainWindow = (MainWindow)this.FindAncestorOfType<Window>();
         mainWindow?.NavigateToPage(new ClientsShow(_mainWindowViewModel, client));
+    }
+
+    public void Refresh()
+    {
+        this.DataContext = new ClientIndexViewModel(_mainWindowViewModel);
     }
 }

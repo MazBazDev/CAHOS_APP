@@ -1,15 +1,14 @@
+using App.Interfaces;
 using App.Models;
 using App.ViewModels;
-using App.ViewModels.Pages;
 using App.ViewModels.Pages.Stock;
-using App.Views.Pages.Orders;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
 
 namespace App.Views.Pages.Stocks;
 
-public partial class StocksIndex : UserControl
+public partial class StocksIndex : UserControl, IRefreshable
 {
     private readonly MainWindowViewModel _mainWindowViewModel;
     
@@ -32,5 +31,10 @@ public partial class StocksIndex : UserControl
         var product = (Product)e.AddedItems[0];
         var mainWindow = (MainWindow)this.FindAncestorOfType<Window>();
         mainWindow?.NavigateToPage(new StockShow(_mainWindowViewModel, product));
+    }
+
+    public void Refresh()
+    {
+        this.DataContext = new StockIndexViewModel(_mainWindowViewModel);
     }
 }

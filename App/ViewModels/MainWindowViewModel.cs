@@ -1,13 +1,26 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using App.Models;
+using App.Services;
 using ReactiveUI;
 
 namespace App.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 { 
+    private readonly AuthService _authService;
+    
     private string? _errorMessage;
     private string? _errorColor;
-    public string UserName { get; set; }
+    private string? _countDown;
+    
+    private User _user = new();
+
+    public User User
+    {
+        get => _user;
+        set => this.RaiseAndSetIfChanged(ref _user, value);
+    }
     
     public string? ErrorMessage
     {
@@ -21,9 +34,16 @@ public partial class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _errorColor, value);
     }
     
+    public string? CountDown
+    {
+        get => _countDown;
+        set => this.RaiseAndSetIfChanged(ref _countDown, value);
+    }
+    
     public MainWindowViewModel()
     {
-        UserName = "MazBaz";
+        _authService = new AuthService();
+        loadUserData();
     }
     
     public void SetError(string message, int? delay = null)
@@ -53,4 +73,22 @@ public partial class MainWindowViewModel : ViewModelBase
         ErrorMessage = null;
         ErrorColor = null;
     }
+    
+    public async void  loadUserData()
+    {
+        try
+        {
+            var response = await _authService.GetUserAsync();
+
+            if (response.IsSuccess)
+            {
+                User = response.Data;
+            } else {
+                SetError($"An error has occurred : {response.ApiException?.Message ?? "Erreur inconnue"}", 5000);
+            }
+        }
+        catch (Exception ex) {
+            SetError($"An error has occurred. Try again later.", 5000);
+        }
+    } 
 }

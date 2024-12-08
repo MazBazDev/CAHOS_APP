@@ -3,6 +3,7 @@ using App.Models;
 using App.Services;
 using App.ViewModels;
 using App.ViewModels.Pages.Clients;
+using App.Views.Pages.Orders;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -97,5 +98,13 @@ public partial class ClientsShow : UserControl
         } catch (Exception ex) {
             _mainWindowViewModel.SetError($"Error: {ex.Message}", 5000);
         }
+    }
+
+    private void ShowOrder(object? sender, SelectionChangedEventArgs e)
+    {
+        if (e.AddedItems.Count == 0) return;
+        var order = (Order)e.AddedItems[0];
+        var mainWindow = (MainWindow)this.FindAncestorOfType<Window>();
+        mainWindow?.NavigateToPage(new OrderShow(_mainWindowViewModel, order));
     }
 }

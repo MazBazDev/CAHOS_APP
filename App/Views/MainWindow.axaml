@@ -10,49 +10,54 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="App">
 
-        <Design.DataContext>
-            <vm:MainWindowViewModel/>
-        </Design.DataContext>
-        
-        <DockPanel>
-            <!-- Navbar -->
-            <Border DockPanel.Dock="Top" Background="Gray" Height="50" Padding="8">
-                <DockPanel>
-                    <TextBlock DockPanel.Dock="Left" Text="CAHOS" Foreground="White" VerticalAlignment="Center" />
-                    
-                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-                        <TextBlock Text="{Binding UserName}" Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center" />
-                        <Button Name="LogoutButton" Click="LogoutButton_OnClick" Foreground="Azure" Content="Logout" />
-                    </StackPanel>
-                </DockPanel>
-            </Border>
-            
-            
-            
-            <!-- Sidebar -->
-            <Border DockPanel.Dock="Left" Background="#2E3B4E" Width="200">
-                <StackPanel>
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <DockPanel>
+        <!-- Navbar -->
+        <Border DockPanel.Dock="Top" Background="#406E8E" Height="50" Padding="8">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Left" Text="CAHOS " Foreground="White" VerticalAlignment="Center"> <Run FontSize="10">by MazBaz</Run></TextBlock>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock Foreground="White" Margin="0,0,8,0" VerticalAlignment="Center">
+                        <Run Text="{Binding User.name}"></Run>
+                        <LineBreak />
+                        <Run Text="{Binding User.email}"></Run>
+                    </TextBlock>
+                    <Button Name="LogoutButton" Click="LogoutButton_OnClick" Foreground="Azure" Content="Logout" />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- Sidebar -->
+        <Border DockPanel.Dock="Left" Background="#5B85AA">
+            <DockPanel>
+                <!-- Zone des boutons -->
+                <StackPanel DockPanel.Dock="Top">
                     <Button Name="Tab1Button" Foreground="Azure" Content="Home" Margin="8 20 8 8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
                     <Button Name="Tab2Button" Foreground="Azure" Content="Stock" Margin="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
                     <Button Name="Tab3Button" Foreground="Azure" Content="Orders" Margin="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
                     <Button Name="Tab4Button" Foreground="Azure" Content="Clients" Margin="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
                     <Button Name="Tab5Button" Foreground="Azure" Content="Logs" Margin="8" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
                 </StackPanel>
-            </Border>
+            </DockPanel>
+        </Border>
 
         <!-- Content Area -->
-            <ScrollViewer>
-                <StackPanel>
-                    <Border Background="{Binding ErrorColor}" Padding="8" Margin="0,0,0,10" 
-                            IsVisible="{Binding ErrorColor, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
-                        <TextBlock Text="{Binding ErrorMessage}" 
-                                   Foreground="White" 
-                                   VerticalAlignment="Center" 
-                                   HorizontalAlignment="Center" 
-                                   FontSize="10" />
-                    </Border>
-                    <ContentControl Name="ContentArea" Padding="20"/>
-                </StackPanel>
-            </ScrollViewer>
-        </DockPanel>
+        <ScrollViewer>
+            <StackPanel>
+                <Border Background="{Binding ErrorColor}" Padding="8" Margin="0,0,0,10" 
+                        IsVisible="{Binding ErrorColor, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+                    <TextBlock Text="{Binding ErrorMessage}" 
+                               Foreground="White" 
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center" 
+                               FontSize="10" />
+                </Border>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding CountDown}" Padding="20 10 0 0 " IsVisible="{Binding CountDown, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                <ContentControl Name="ContentArea" Padding="20"/>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
 </Window>

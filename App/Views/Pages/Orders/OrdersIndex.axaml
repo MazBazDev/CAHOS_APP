@@ -26,6 +26,7 @@
                 <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
                 <DataGridTextColumn Header="Total" Binding="{Binding total}" />
                 <DataGridTextColumn Header="Status" Binding="{Binding status}" />
+                <DataGridTextColumn Header="Date" Binding="{Binding order_date}" />
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>

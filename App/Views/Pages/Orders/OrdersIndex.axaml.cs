@@ -1,3 +1,4 @@
+using App.Interfaces;
 using App.Models;
 using App.ViewModels;
 using App.ViewModels.Pages.Orders;
@@ -7,7 +8,7 @@ using Avalonia.VisualTree;
 
 namespace App.Views.Pages.Orders;
 
-public partial class OrdersIndex : UserControl
+public partial class OrdersIndex : UserControl, IRefreshable
 {
     private readonly MainWindowViewModel _mainWindowViewModel;
     
@@ -30,5 +31,10 @@ public partial class OrdersIndex : UserControl
         var order = (Order)e.AddedItems[0];
         var mainWindow = (MainWindow)this.FindAncestorOfType<Window>();
         mainWindow?.NavigateToPage(new OrderShow(_mainWindowViewModel, order));
+    }
+
+    public void Refresh()
+    {
+        this.DataContext = new OrderIndexViewModel(_mainWindowViewModel);
     }
 }

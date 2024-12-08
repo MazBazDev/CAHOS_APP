@@ -25,7 +25,7 @@
         </StackPanel>
         
         <!-- Buttons -->
-        <Grid Margin="0,20,0,0">
+        <Grid Margin="0,20,0, 20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -48,5 +48,21 @@
                     KeyboardNavigation.TabIndex="7" 
                     Grid.Column="2"/>
         </Grid>
+        
+        <TextBlock>Client Orders : </TextBlock>
+        <DataGrid Name="DataGrid" ItemsSource="{Binding Client.orders}" 
+                  SelectionChanged="ShowOrder"
+                  AutoGenerateColumns="False" IsReadOnly="True" 
+                  GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray"
+                  MinHeight="400">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                <DataGridTextColumn Header="Product" Binding="{Binding product.name}" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
+                <DataGridTextColumn Header="Total" Binding="{Binding total}" />
+                <DataGridTextColumn Header="Status" Binding="{Binding status}" />
+                <DataGridTextColumn Header="Date" Binding="{Binding order_date}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </StackPanel>
 </UserControl>

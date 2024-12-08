@@ -1,5 +1,6 @@
 using System.IO;
 using System.Text;
+using App.Interfaces;
 using App.ViewModels;
 using App.ViewModels.Pages;
 using Avalonia.Controls;
@@ -8,11 +9,13 @@ using Avalonia.Platform.Storage;
 
 namespace App.Views.Pages.Logs;
 
-public partial class LogsIndex : UserControl
+public partial class LogsIndex : UserControl, IRefreshable
 {
+    private readonly MainWindowViewModel _mainWindowViewModel;
     public LogsIndex(MainWindowViewModel mainWindowViewModel)
     {
-        this.DataContext = new LogViewModel(mainWindowViewModel);
+        _mainWindowViewModel = mainWindowViewModel;
+        this.DataContext = new LogViewModel(_mainWindowViewModel);
         InitializeComponent();
     }
     
@@ -56,6 +59,9 @@ public partial class LogsIndex : UserControl
             await streamWriter.WriteAsync(csvBuilder.ToString());
         }
     }
-    
-    
+
+    public void Refresh()
+    {
+        this.DataContext = new LogViewModel(_mainWindowViewModel);
+    }
 }
