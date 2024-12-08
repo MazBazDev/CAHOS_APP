@@ -11,7 +11,7 @@ public class Order
     public Product? product {get; set;}
     public int? product_id { get; set; }
     public int quantity {get; set;}
-    public int total {get; set;}
+    public double total {get; set;}
     public string? status {get; set;}
     public DateTime? order_date {get; set;}
     

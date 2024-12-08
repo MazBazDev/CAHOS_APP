@@ -14,7 +14,7 @@ public class Client
     public DateTime created_at {get; set;}
     public DateTime updated_at {get; set;}
     
-    public List<Order>? orders {get; set;}
+    public List<Order?>? orders {get; set;} = new List<Order>();
     
     public Client() {}
     
