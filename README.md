@@ -16,7 +16,7 @@ This project is a desktop application built with Avalonia and C#. It provides a 
 - **Responsive Design**: Works on different screen sizes.
 - **Error Handling**: Displays error messages with different colors based on the type of message (error or success).
 - **CSV Export**: Export logs to a CSV file.
-- **Logout**: Log out and return to the login screen.
+- **Alerts**: You can display alerts on the home screen when a product's expiration date is within 5 days or its stock is 5 units or fewer.
 - **API Integration**: Communicates with the [cahos_api](https://github.com/mazbazdev/cahos_api) to fetch and update data.
 
 ## Prerequisites
