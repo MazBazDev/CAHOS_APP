@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using DotNetEnv;
 
 namespace App.Services;
 
@@ -16,7 +17,7 @@ public class ApiService
     {
         _httpClient = new HttpClient
         {
-            BaseAddress = new Uri("http://127.0.0.1:8000/api/")
+            BaseAddress = new Uri(Env.GetString("API_BASE_URL", "http://localhost:8010/api"))
         };
         _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
     }

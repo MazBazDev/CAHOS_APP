@@ -12,6 +12,7 @@ using App.Views.Pages.Stocks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
+using DotNetEnv;
 
 namespace App.Views;
 
@@ -31,24 +32,26 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         InitializeNavigation();
+        
+        if (Env.GetBool("AUTO_REFRESH", true)) {
+            // Timer pour rafraîchir le contenu toutes les 30 secondes
+            _refreshTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(30)
+            };
+            _refreshTimer.Tick += RefreshContent;
+            _refreshTimer.Start();
 
-        // Timer pour rafraîchir le contenu toutes les 30 secondes
-        _refreshTimer = new DispatcherTimer
-        {
-            Interval = TimeSpan.FromSeconds(30)
-        };
-        _refreshTimer.Tick += RefreshContent;
-        _refreshTimer.Start();
+            // Timer pour mettre à jour le texte du RefreshText chaque seconde
+            _countdownTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
+            _countdownTimer.Tick += UpdateCountdownText;
+            _countdownTimer.Start();
 
-        // Timer pour mettre à jour le texte du RefreshText chaque seconde
-        _countdownTimer = new DispatcherTimer
-        {
-            Interval = TimeSpan.FromSeconds(1)
-        };
-        _countdownTimer.Tick += UpdateCountdownText;
-        _countdownTimer.Start();
-
-        _remainingSeconds = 30;
+            _remainingSeconds = 30;
+        }
 
         NavigateToPage(new Home(this.DataContext as MainWindowViewModel));
     }
